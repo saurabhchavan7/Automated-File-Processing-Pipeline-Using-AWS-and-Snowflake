@@ -10,12 +10,12 @@ This project implements a **fully automated, serverless data engineering pipelin
 
 ## Key Features  
 
-✔ **Automated Data Ingestion:** users upload ZIP files via AWS SFTP (Transfer Family), which are stored in **Amazon S3 (Landing Zone)**.  
-✔ **Serverless Processing:** AWS Lambda unzips files, processes CSV data, and triggers AWS Glue for further transformation.  
-✔ **Optimized Data Storage:** AWS Glue converts CSV files into **Parquet format** (reducing storage and improving query performance).  
-✔ **Real-Time Data Loading:** **Snowpipe** continuously ingests Parquet files into **Snowflake** as soon as they arrive.  
-✔ **Event-Driven Processing:** AWS S3 event notifications and Amazon SQS automate workflow triggers, ensuring **near real-time** data ingestion.  
-✔ **Scalable & Cost-Effective:** The pipeline is **serverless**, reducing operational costs while scaling efficiently.
+**Automated Data Ingestion:** users upload ZIP files via AWS SFTP (Transfer Family), which are stored in **Amazon S3 (Landing Zone)**.  
+**Serverless Processing:** AWS Lambda unzips files, processes CSV data, and triggers AWS Glue for further transformation.  
+**Optimized Data Storage:** AWS Glue converts CSV files into **Parquet format** (reducing storage and improving query performance).  
+**Real-Time Data Loading:** **Snowpipe** continuously ingests Parquet files into **Snowflake** as soon as they arrive.  
+**Event-Driven Processing:** AWS S3 event notifications and Amazon SQS automate workflow triggers, ensuring **near real-time** data ingestion.  
+**Scalable & Cost-Effective:** The pipeline is **serverless**, reducing operational costs while scaling efficiently.
 
 ---
 
@@ -70,26 +70,26 @@ This project implements a **fully automated, serverless data engineering pipelin
 
 ##  Architecture Flow  
 
-1️⃣ **Users upload ZIP files** to the SFTP server (AWS Transfer Family).  
-2️⃣ **AWS S3 (Landing Zone)** stores the uploaded ZIP files.  
-3️⃣ **AWS Lambda gets triggered** via S3 event notification:
+1️. **Users upload ZIP files** to the SFTP server (AWS Transfer Family).  
+2️. *AWS S3 (Landing Zone)** stores the uploaded ZIP files.  
+3️. **AWS Lambda gets triggered** via S3 event notification:
    - Unzips files.
    - Extracts CSV files.
    - Moves them to the Curated Layer.
    - Triggers AWS Glue for transformation.  
-4️⃣ **AWS Glue** converts CSV files into **Parquet format** and saves them in the **Published Layer**.  
-5️⃣ **Amazon SQS receives notifications** whenever new Parquet files arrive.  
-6️⃣ **Snowpipe listens to SQS and auto-ingests** Parquet data into Snowflake.  
-7️⃣ **Data is ready for querying in Snowflake** for analytics and business intelligence.  
+4️. **AWS Glue** converts CSV files into **Parquet format** and saves them in the **Published Layer**.  
+5️. **Amazon SQS receives notifications** whenever new Parquet files arrive.  
+6️. **Snowpipe listens to SQS and auto-ingests** Parquet data into Snowflake.  
+7️. **Data is ready for querying in Snowflake** for analytics and business intelligence.  
 
 ---
 
 ##  Security Measures  
 
-✔ **IAM Role-Based Access** – Enforced least privilege access across AWS services.  
-✔ **SFTP Authentication** – Used **public-private key pairs** for user access.  
-✔ **Encrypted Data Transfer** – Ensured secure file uploads to AWS Transfer Family.  
-✔ **Restricted Bucket Access** – Only specific services (Lambda, Glue, Snowpipe) can interact with S3.  
+**IAM Role-Based Access** – Enforced least privilege access across AWS services.  
+**SFTP Authentication** – Used **public-private key pairs** for user access.  
+**Encrypted Data Transfer** – Ensured secure file uploads to AWS Transfer Family.  
+**Restricted Bucket Access** – Only specific services (Lambda, Glue, Snowpipe) can interact with S3.  
 
 ---
 
